@@ -9,6 +9,7 @@ function initialize() {
   		zoom: 7, 
   		//specifies the type of map to display. Road map is normal, 2D. Could switch to 'Hybrid' and have photo with road and city names.
   		mapTypeId: google.maps.MapTypeId.Hybrid
+  		
 		};
 
 //creates a new map inside the div element googleMap in html using the paramaters that are passed through mapProp
@@ -17,5 +18,14 @@ var map1=new google.maps.Map(document.getElementById("googleMap"), mapProp);
 //creates a second map from the paramaters passed through mapProp
 var map2 =new google.maps.Map(document.getElementById("googleMap2"), mapProp);
 }
+
+
+//adds the marker to the center of the map 
+//NEED TO DEFINE CENTER STILL 
+//var marker=new google.maps.Marker({
+	//position:center,
+//});
+//marker.setMap(map);
+
 //adds a DOM listener that will execute the initialize function on window when the page is loaded
 google.maps.event.addDomListener(window, 'load', initialize);
