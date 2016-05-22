@@ -18,11 +18,51 @@ function initialize() {
 
 //creates a new map inside the div element googleMap in html using the paramaters that are passed through mapProp
 var map1=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		//center:{
+			//lat: 51.508742,
+			//lng: -0.120850
+		//},
+		//zoom:15
+	
 
 //creates a second map from the paramaters passed through mapProp
 var map2 =new google.maps.Map(document.getElementById("googleMap2"), mapProp);
-}
+};//{
+		//center:{
+			//lat: 51.508742,
+			//lng: -0.120850
+		//},
+	//};
 
+//var marker = new google.maps.Marker({
+ 	//position:( new google.maps.LatLng(51.508742, -0.120850),
+
+ 		//map:map,
+ 		//draggable:true
+ //});
+
+//This pulls from the google places library of possible destinations
+var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+
+//place change event on search box
+google.maps.event.addDomListener(searchBox, 'places_changed', function(){
+
+	var places = searchBox.getPlaces();
+	console.log(searchBox.getPlaces());
+
+	//bound
+	var bounds = new google.maps.LatLngBounds();
+	var i, place;
+
+	for (i=0; place=places[i]; i++){
+		//console.log(place.geometry);
+
+		bounds.extend(place.geometry.location);
+		//maker.setPosition(place.geometry.location); //sets new marker position
+	}
+//map.fitBounds(bounds); //fit to the bound
+//map.setZoom(15);
+});
 
 //adds the marker to the center of the map 
 //NEED TO DEFINE CENTER STILL 
