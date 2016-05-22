@@ -7,6 +7,10 @@ function initialize() {
   		center:new google.maps.LatLng(51.508742, -0.120850),
 		//specifies zoom levels for the map higher levels will be a higher resoution. 0 is a view of the earth
   		zoom: 7, 
+  		//lets users drag the map
+  		draggable:true,
+  		//lets users scroll through the page with out moving the map
+  		disableDefaultUI:false,
   		//specifies the type of map to display. Road map is normal, 2D. Could switch to 'Hybrid' and have photo with road and city names.
   		mapTypeId: google.maps.MapTypeId.Hybrid
   		
