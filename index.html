@@ -23,8 +23,8 @@
 		</div>
 
 		<form>
-			<input type="text" name="city" placeholder="Enter City">
-			<input type="submit" name="submitbutton">
+			<input type="text" name="city" placeholder="Zip Code">
+			<input id="submit" type="submit" name="submitbutton">
 		</form>
 
 	<div id="api-container" class="container1 col-md-12">
@@ -55,11 +55,16 @@
 
 	</div>
 
+<!-- here is the div where I will attempt to push the hourly weather data -->
+<!-- Dynamic div creation class = .jsWeatherDivs use this in css ! -->
+	<div id="weatherDataDiv">
+
+	</div>
+
 	<footer> &copy; 2016 Bowman, Burnside and Wiebelt</footer>
 
 </div>
 
-<!-- Testing Branches (Brian) -->
 <!--Firebase-->
 <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script> 
 <!-- jQuery -->
