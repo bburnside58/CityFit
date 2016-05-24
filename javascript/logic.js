@@ -74,12 +74,12 @@ $(document).ready(function(){
 				weatherDiv.append(pHumidity)
 
 				//ADDING A CLASS!! TO NEW WEATHER DIVS!!
-				weatherDiv.addClass('jsWeatherDivs col-md-2 col-xs-6')
+				weatherDiv.addClass('jsWeatherDivs col-xs-6 col-sm-3 col-md-2')
 				//adding a class to the paragraph tags just in case need it later in css
-				pTime.addClass('jsWeatherPtags')
-				pCondition.addClass('jsWeatherPtags')
-				pTemp.addClass('jsWeatherPtags')
-				pHumidity.addClass('jsWeatherPtags')
+				pTime.addClass('jsWeatherPtags text-center')
+				pCondition.addClass('jsWeatherPtags text-center')
+				pTemp.addClass('jsWeatherPtags text-center')
+				pHumidity.addClass('jsWeatherPtags text-center')
 
 				//pushing to html weatherDataDiv div
 				$('#weatherDataDiv').append(weatherDiv)
