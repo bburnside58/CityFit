@@ -22,45 +22,24 @@
 		  <h4>Good Places. Live Active. Be happy.</h4>
 		</div>
 
-		<!--<form>
-			<input type="text" name="city" placeholder="Enter City">
-			<input type="submit" name="submitbutton">
-		</form> -->
-	<input type="text" id="mapsearch" size="50">
-	
+		<form>
+			<input type="text" name="city" placeholder="Zip Code">
+			<input id="submit" type="submit" name="submitbutton">
+		</form>
 
 	<div id="api-container" class="container1 col-md-12">
 
- 		<div id="googleMap" style="width:500px;height:380px;" class="col-sm-12"></div>
-
- 		<div id="googleMap2" style="width:500px;height:380px;" class="col-sm-12"></div>
+ 		<div id="map" class="col-sm-12"></div>
 
  		<div id="api2" class="col-sm-12"></div>
 
  	</div>
 
- 	
- 		
- 	</div>
 
-
-	<div class="panel-body">
-
-		<table class="table table-hover" id="summaryTable">	
-
-			<thead>
-				<tr>
-					<th>Thing1</th>
-					<th>Thing2</th>
-					<th>Thing3</th>
-					<th>Thing4</th>
-				</tr>
-			</thead>
-
-			<tbody>
-			</tbody>
-
-		</table>
+<!-- here is the div where I will attempt to push the hourly weather data -->
+<!-- Dynamic div creation class = .jsWeatherDivs use this in css ! -->
+<!-- Dynamic p tags creation class = .jsWeatherPtags use this in css ! -->
+	<div id="weatherDataDiv">
 
 	</div>
 
@@ -68,15 +47,14 @@
 
 </div>
 
-
-<!--Google Map with API Key--> <!--&libraries places adds the ability to search through lat and log by address-->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&libraries=places"></script>
 <!--Firebase-->
 <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script> 
 <!-- jQuery -->
 <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
 <!-- javascript -->
 <script type="text/javascript" src="javascript/logic.js"></script>
+<!-- Google map api -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&callback=initMap"></script>
 
 </body>
 </html>
