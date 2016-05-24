@@ -63,8 +63,8 @@ $(document).ready(function(){
 				//Want to try to work to include the icons here or elsewhere at a later time
 				//here are paragraph tags to push into weatherDiv for each weather data parameter
 				var pTime = $('<p>').text(time);
-				var pCondition = $('<p>').text("Local Conditions: " + condition);
-				var pTemp = $('<p>').text("Temp: " + temp + "F");
+				var pCondition = $('<p>').text(condition);
+				var pTemp = $('<p>').text(temp + "F");
 				var pHumidity = $('<p>').text("Humidity: " + humidity + "%");
 
 				//appending relevent weather data to weatherDiv div 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 				weatherDiv.append(pHumidity)
 
 				//ADDING A CLASS!! TO NEW WEATHER DIVS!!
-				weatherDiv.addClass('jsWeatherDivs')
+				weatherDiv.addClass('jsWeatherDivs col-md-2 col-xs-6')
 				//adding a class to the paragraph tags just in case need it later in css
 				pTime.addClass('jsWeatherPtags')
 				pCondition.addClass('jsWeatherPtags')
