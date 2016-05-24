@@ -5,16 +5,17 @@ $(document).ready(function(){
 	  url : "http://api.wunderground.com/api/77cd5507fb26ca1c/hourly/q/autoip.json",
 	  dataType : "jsonp",
 
-		success : function(parsed_json) {
+		success : function(data) {
 
+			console.log(data);
 			//for loop for how many hours we want, 12 sounds good for this web app
 			for (var i = 0; i < 12; i++){
 
 				//variable to grab each data we want
-				var time = parsed_json['hourly_forecast'][i]['FCTTIME']['civil'];
-			  	var condition = parsed_json['hourly_forecast'][i]['condition'];
-				var temp = parsed_json['hourly_forecast'][i]['temp']['english'];
-				var humidity = parsed_json['hourly_forecast'][i]['humidity'];
+				var time = data['hourly_forecast'][i]['FCTTIME']['civil'];
+			  	var condition = data['hourly_forecast'][i]['condition'];
+				var temp = data['hourly_forecast'][i]['temp']['english'];
+				var humidity = data['hourly_forecast'][i]['humidity'];
 				// var icon = parsed_json['hourly_forecast'][i]['icon'];
 				// var iconUrl = parsed_json['hourly_forecast'][i]['icon_url'];
 
@@ -45,46 +46,7 @@ $(document).ready(function(){
 				//pushing to html weatherDataDiv div
 				$('#weatherDataDiv').append(weatherDiv)
 				
-
 			}
 		}
-
 	});
-
-	// function weatherData(){
-
-	// 	var queryURL = "http://api.wunderground.com/api/77cd5507fb26ca1c/hourly/q/autoip.json"
-
-	// 	$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-
-	// 		console.log(response)
-
-	// 		var temp = response["temp_f"];
-	// 		alert(temp);
-
-	// 		var results = response.hourly_forecast;
-
-	// 		console.log(results)
-
-			
-
-
-	// 	});
-
-
-
-	// }
-
-	// weatherData();
-
-
-
-
-
-
-
-
-
-
-
 });
