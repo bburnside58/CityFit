@@ -39,67 +39,33 @@
  		<div id="api2" class="col-sm-12"></div>
  	</div>
 
- 	<div class= "calorieCounter">
- 	<h1>Calorie Calculator</h1>
- 	<p>Being Happy and staying active are very important. This calorie calculator assists you by calculating the estimated amount of calories you burn based on the activites that you conquer during your day. Remember, these calculations are estimates and used to best help you plan your day and track calories so that you can reach your fitness goals.</p>
+<div id= "calorieCalculator">
 
- 	<form id="calorieCounterForm" name="calorieCounter">
- 	<h3>Choose an activity:</h3>
- 	<select size="1" name="activity" id="activityChoice">
- 		<option value="walking">Walking</option>
- 		<option value="running">Running</option>
- 		<option value="swimming">Swimming</option>
- 		<option value="kayaking">Kayaking</option>
- 		<option value="bicycling">Bicycling</option>
- 	</select>
- 	<br>
- 	<br>
+ <h1>Calorie Calculator</h1>
+ 	<p>Being Happy and staying active are very important. This calorie calculator assists you by calculating burned based on the amount of time you spent walking, assuming that you are going a brisk steady pace without stopping. Remember, these calculations are estimates and used to best help you plan your day and track calories so that you can reach your fitness goals.</p>
+<label>Male:<input id="male" type="radio" name="gender" onchange="calsBurned()" checked></label>
+<br>
+<label>Female:<input id="female" type="radio" name="gender" onchange="calsBurned()"</label>
+<br>
+<br>
 
- 	<p>How long will you you be doing this activity? <input type= "text" placeholder="0" id="activityTime">minutes</p>
- 	
- 	<p>What's your weight? <input type= "text" placeholder="0" id="userWeight">lbs</p>
+<label>How old are you?<br><input id="age" type="number" oninput="calsBurned()"></label>
+<br>
+<br>
 
- 	<p>How old are you? <input type= "text" placeholder="0" id="userAge"></p>
-
- 	<p>Gender: <input type="radio" name="sex" id="userGender" checked>Male <input type="radio" name="sex">Female</p>
-
- 	<button type="button" name="computeCalories" id="computeCalories">Compute Calories</button>
-
- 	<input type="button" name="resetButton" onclick="resetForm()" id="resetButton" value="Reset">
- 	<br>
- 	<br>
-
- 	<p>Your calories burned:</p>
- 	<input name="caloriesBurned" type="text" id="caloriesBurned">
-
- 	</form>
-
- 	</div>
-
-
- 	<h1>Fill out the form below.</h1>
-<label>Female:
-  <input id="female" type="radio" name="gender" onchange="calsPerDay()">
+<label>How long will your walk be?<br><input id="height" type="number" oninput="calsBurned()">minutes
 </label>
-<label>Male:
-  <input id="male" type="radio" name="gender" onchange="calsPerDay()" checked>
-</label>
-<label>Age:
-  <input id="age" type="number" oninput="calsPerDay()" value="50">
-  years
-</label>
-<label>Height:
-  <input id="height" type="number" oninput="calsPerDay()" value="70">
-  in inches (12 inches=1 foot)
-</label>
-<label>Weight:
-  <input id="weight" type="number" oninput="calsPerDay()" value="225">
-  in pounds
-</label>
-<label>
-  Base metabolic rate: <span id="totalCals"></span> kcal per day
-</label>
+<br>
+<br>
 
+<label>What's your weight?<br><input id="weight" type="number" oninput="calsBurned()">lbs</label>
+<br>
+<br>
+
+
+<label>Your calories burned: <span id="totalCals"></span> calories</label>
+
+</div>
 
 	<div class="panel-body">
 

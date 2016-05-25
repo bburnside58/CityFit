@@ -74,96 +74,27 @@ google.maps.event.addDomListener(searchBox, 'places_changed', function(){
 //adds a DOM listener that will execute the initialize function on window when the page is loaded
 google.maps.event.addDomListener(window, 'load', initialize);
 
-//=============================================================
-
-//function computeCalories(input) {
-
-	var calories = 0;
-switch (input) {
-	case "walking": calories=4; break;
-	case "running": calories=10; break;
-	case "swimming": calories=6; break;
-	case "kayaking": calories=9; break; 
-	case "bicycling": calories=8; break;
-
-	}
-	var newCalorieCount = calories.toFixed(2);
-	return newCalorieCount;
-}
-	//function calculateCals() {
-		var minutes = document.getElementById('activityTime');
-		var weight = document.getElementById('userWeight');
-		var age = document.getElementById('userAge');
-		var gender = document.getElementById('userGender');
-
-
-var caloriesBurned = document.getElementById('caloriesBurned');
-var exercise = document.getElementById('activityChoice');
-var time = Math.floor(minutes.value);
-var userWeight = Math.floor(weight.value);
-var totalCalories = Math.floor(caloriesBurned.value);
-
-	var tmpTotal = Math.abs(computeCalories(exercise.value) * (weight/2.2) * (time/60));
-	var displayTotal = tmpTotal.toFixed(0);
-
-caloriesBurned.value =displayTotal;
-
-	$('')
-}
-//
-//===============================================================================
-
-function calsPerDay() {
+//===========================================================
+function calsBurned() {
   function find(id) { return document.getElementById(id) }
 
   var age = find("age").value
-  var height = find("height").value * 2.54
-  var weight = find("weight").value / 2.2
+  var time = find("height").value
+  var weight = find("weight").value 
   var result = 0
   if (find("male").checked) 
-    result = 66.47 + (13.75 * weight) + (5.0 * height - (6.75 * age))
+   result = [(weight * 0.082) - (age * 0.08) + (120 * 0.61) - 55.07] * time/4.184
+  
   else if (find("female").checked)
-    result = 665.09 + (9.56 * weight) + (1.84 * height - (4.67 * age))
+   result = [(weight * 0.061) - (age * 0.07) + (120 * 0.35) - 19.41] * time/4.184
+  
   find("totalCals").innerHTML = Math.round( result )
+
 }
-calsPerDay()
+calsBurned()
+
 
 
 //====================================================
 
-function resetForm(){
-	document.getElementById("calorieCounterForm").reset();
-} 
-
-function findHeartRate(input) {
-
-var heartRate = 0;
-switch (input) {
-	case "walking (leisurely)": heartRate=75; break;
-	case "running": heartRate=130; break;
-	case "swimming": heartRate=140; break;
-	case "kayaking": heartRate=115; break; 
-	case "bicycling": heartRate=125; break;
-
-}
-	var newHeartRate = heartRate.toFixed(2);
-	return newHeartRate;
-
-$("#computeCalories").on("click", function calculateCals(){
-function find(id) {
-	return document.getElementById(id)
-}
-	
-	var age = find("age").value
-	var weight = find ("weight").value
-	var exercise = newHeartRate.value
-	var time = find ("minutes").value
-	if (find("male").checked)
-		result = ((age * 0.2017) - (weight * 0.09036) + (exercise * 0.6309) - 55.0969) * time/4.184
-	else if (find("female").checked)
-		result = ((age * 0.074) - (weight * 0.05741) + (exercise * 0.4472) - 20.4022) * time/4.184
-		find("caloriesBurned").innerHTML = Math.round( result )
-	})
-
-}
 
