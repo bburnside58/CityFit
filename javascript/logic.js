@@ -41,7 +41,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
 
-};
+}
 // this is where it defines the area and what we are searching for
    request = {
     location: center,
@@ -79,14 +79,14 @@ function createMaker(place){
 //clears old markers
 function clearResults (markers){
 		for (var m in markers){
-			markers [m].setMap(null)
+			markers [m].setMap(null);
 		}
-		markers = []
+		markers = [];
 }
 //this will select a new group of places if the user drags the map and clicks on a different center
   google.maps.event.addListener(map, 'rightclick', function(event){
-  	map.setCenter(event.latlng) //resets the map
-  	clearResults(markers) //clears the old makers
+  	map.setCenter(event.latlng); //resets the map
+  	clearResults(markers); //clears the old makers
   	//new area is defined
   	var request = {
   		location: event.latlng,
@@ -96,7 +96,7 @@ function clearResults (markers){
   	service.nearbySearch(request, callback);
   	console.log("request");
 
-  })
+  });
 
 
 $(document).ready(function(){
