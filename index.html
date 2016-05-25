@@ -12,80 +12,22 @@
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!--Moments JS ref (Just in Case ;) )-->
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 	</head>
 <body>
 
 <div class="main-container">
 
 		<div class="page-header">
-		  <h1>CityFit</h1>
-		  <h4>Good Places. Live Active. Be happy.</h4>
+		  <h1>DayDate</h1>
+		  <h4>Say no to boredom. Get outdoors. Have fun. Be together.</h4>
 		</div>
 
-		<form>
-			<input type="text" id= "citySelect" name="city" placeholder="Enter City">
-			
-		</form>
-
-		<input type="text" name="city" id="selection" placeholder="Your State">
-		<form>
-		
-		Select your State:
-		<select id="stateList" onchange="stateSelect()">
-		<option>Alabama</option>
-		<option>Alaska</option>
-		<option>Arizona</option>
-		<option>Arkansas</option>
-		<option>California</option>
-		<option>Colorado</option>
-		<option>Connecticut</option>
-		<option>Delaware</option>
-		<option>Florida</option>
-		<option>Georgia</option>
-		<option>Hawaii</option>
-		<option>Idaho</option>
-		<option>Illinois</option>
-		<option>Indiana</option>
-		<option>Iowa</option>
-		<option>Kansas</option>
-		<option>Kentucky</option>
-		<option>Louisiana</option>
-		<option>Maine</option>
-		<option>Maryland</option>
-		<option>Massachusetts</option>
-		<option>Michigan</option>
-		<option>Minnesota</option>
-		<option>Mississippi</option>
-		<option>Missouri</option>
-		<option>Montana</option>
-		<option>Nebraska</option>
-		<option>Nevada</option>
-		<option>New Hampshire</option>
-		<option>New Jersey</option>
-		<option>New Mexico</option>
-		<option>New York</option>
-		<option>North Carolina</option>
-		<option>North Dakota</option>
-		<option>Ohio</option>
-		<option>Oklahoma</option>
-		<option>Oregon</option>
-		<option>Pennsylvania</option>
-		<option>Rhode Island</option>
-		<option>South Carolina</option>
-		<option>South Dakota</option>
-		<option>Tennessee</option>
-		<option>Texas</option>
-		<option>Utah</option>
-		<option>Vermont</option>
-		<option>Virginia</option>
-		<option>Washington</option>
-		<option>West Virginia</option>
-		<option>Wisconsin</option>
-		<option>Wyoming</option>
-		</select>
-
-		<br>
-		<input type="submit" id="addLocation" name="submitbutton">
+		<!--<form>
+			<input type="text" name="city" placeholder="Enter City">
+			<input type="submit" name="submitbutton">
+		</form> -->
+	<input type="text" id="mapsearch" size="50">
 	
 
 	<div id="api-container" class="container1 col-md-12">
@@ -95,12 +37,68 @@
  		<div id="googleMap2" style="width:500px;height:380px;" class="col-sm-12"></div>
 
  		<div id="api2" class="col-sm-12"></div>
-
  	</div>
 
+ 	<div class= "calorieCounter">
+ 	<h1>Calorie Calculator</h1>
+ 	<p>Being Happy and staying active are very important. This calorie calculator assists you by calculating the estimated amount of calories you burn based on the activites that you conquer during your day. Remember, these calculations are estimates and used to best help you plan your day and track calories so that you can reach your fitness goals.</p>
+
+ 	<form id="calorieCounterForm" name="calorieCounter">
+ 	<h3>Choose an activity:</h3>
+ 	<select size="1" name="activity" id="activityChoice">
+ 		<option value="walking">Walking</option>
+ 		<option value="running">Running</option>
+ 		<option value="swimming">Swimming</option>
+ 		<option value="kayaking">Kayaking</option>
+ 		<option value="bicycling">Bicycling</option>
+ 	</select>
+ 	<br>
+ 	<br>
+
+ 	<p>How long will you you be doing this activity? <input type= "text" placeholder="0" id="activityTime">minutes</p>
  	
- 		
+ 	<p>What's your weight? <input type= "text" placeholder="0" id="userWeight">lbs</p>
+
+ 	<p>How old are you? <input type= "text" placeholder="0" id="userAge"></p>
+
+ 	<p>Gender: <input type="radio" name="sex" id="userGender" checked>Male <input type="radio" name="sex">Female</p>
+
+ 	<button type="button" name="computeCalories" id="computeCalories">Compute Calories</button>
+
+ 	<input type="button" name="resetButton" onclick="resetForm()" id="resetButton" value="Reset">
+ 	<br>
+ 	<br>
+
+ 	<p>Your calories burned:</p>
+ 	<input name="caloriesBurned" type="text" id="caloriesBurned">
+
+ 	</form>
+
  	</div>
+
+
+ 	<h1>Fill out the form below.</h1>
+<label>Female:
+  <input id="female" type="radio" name="gender" onchange="calsPerDay()">
+</label>
+<label>Male:
+  <input id="male" type="radio" name="gender" onchange="calsPerDay()" checked>
+</label>
+<label>Age:
+  <input id="age" type="number" oninput="calsPerDay()" value="50">
+  years
+</label>
+<label>Height:
+  <input id="height" type="number" oninput="calsPerDay()" value="70">
+  in inches (12 inches=1 foot)
+</label>
+<label>Weight:
+  <input id="weight" type="number" oninput="calsPerDay()" value="225">
+  in pounds
+</label>
+<label>
+  Base metabolic rate: <span id="totalCals"></span> kcal per day
+</label>
 
 
 	<div class="panel-body">
@@ -129,7 +127,6 @@
   <p>Wind: <span id="wind"></span></p>
   <p>Forecast: <span id="condition"></span></p>
   <p>Humidity: <span id="humidity"></span></p>
-
 	<footer> &copy; 2016 Bowman, Burnside and Wiebelt</footer>
 
 </div>
@@ -143,6 +140,7 @@
 <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
 <!-- javascript -->
 <script type="text/javascript" src="javascript/logic.js"></script>
+
 
 </body>
 </html>
