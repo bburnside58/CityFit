@@ -30,9 +30,40 @@
  		<div id="map" class="col-sm-12"></div>
 
  		<div id="api2" class="col-sm-12"></div>
-
  	</div>
 
+	<div id= "calorieCalculator">
+
+		 <h1>Calorie Calculator</h1>
+		 	<p>Being Happy and staying active are very important. This calorie calculator assists you by calculating calories burned based on the amount of time you spent walking, assuming that you are going a brisk and steady pace without stopping. Remember, these calculations are estimates and used to best help you plan your day and track calories so that you can reach your fitness goals.</p>
+
+
+		<label>Male:<input id="male" type="radio" name="gender" onchange="calsBurned()" checked></label>
+		<br>
+		<label>Female:<input id="female" type="radio" name="gender" onchange="calsBurned()"</label>
+		<br>
+		<br>
+
+		<label>How old are you?<br><input id="age" type="number" oninput="calsBurned()"></label>
+		<br>
+		<br>
+
+		<label>How long will your walk be?<br><input id="height" type="number" oninput="calsBurned()">minutes
+		</label>
+		<br>
+		<br>
+
+		<label>What's your weight?<br><input id="weight" type="number" oninput="calsBurned()">lbs</label>
+		<br>
+		<br>
+
+
+		<label>Your calories burned: <span id="totalCals"></span> calories</label>
+		<br>
+
+
+
+	</div>
 
 <!-- here is the div where I will attempt to push the hourly weather data -->
 <!-- Dynamic div creation class = .jsWeatherDivs use this in css ! -->
@@ -58,6 +89,7 @@
 <script type="text/javascript" src="javascript/logic.js"></script>
 <!-- Google map api -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&callback=initMap"></script>
+
 
 </body>
 </html>
