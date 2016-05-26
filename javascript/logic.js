@@ -1,10 +1,12 @@
 
+
 var map;
 var infoWindow;
 var request;
 var service;
 var markers = [];
 var center;
+var pos;
 
 function initMap() {
 	center = new google.maps.LatLng(-34.397, 150.644);
@@ -37,70 +39,58 @@ function initMap() {
 
 //alerts user when there is an error
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
+  //infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
 
 }
-// this is where it defines the area and what we are searching for
-   request = {
-    location: center,
-    radius: 8047, //meters
-    types: ['cafe'] // the criteria that we are looking for in our places - this will need to be replaced with info from the button
-//puts the maker at each of the places
-};
-function createMarker(place){ //place object
-	var placeLoc = place.geometry.location;
-	var marker = new google.maps.Marker({
-		map: map,
-		position: place.geometry.location
-	});
-	return marker;
-  }
-  createMarker(request);
-  console.log(request);
-
-//this shows information at each marker
-  infoWindow = new google.maps.InfoWindow({map: map});
-
+  infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
-  service.nearbySearch(request, callback);
+  // The idle event is a debounced event, so we can query & listen without
+  // throwing too many requests at the server.
+  map.addListener('idle', performSearch);
 }
-//this function creates the markers at the locations
+
+function performSearch() {
+  var request = {
+    bounds: map.getBounds(),
+    keyword: 'cafe'
+  };
+  service.radarSearch(request, callback);
+  console.log(request);
+}
+
 function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      markers.push(createMarker(results[i]));
+  if (status !== google.maps.places.PlacesServiceStatus.OK) {
+    console.error(status);
+    return;
+  }
+  for (var i = 0, result; result = results[i]; i++) {
+    addMarker(result);
+  }
+}
+
+function addMarker(place) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: {
+      url: 'http://maps.gstatic.com/mapfiles/circle.png',
+      anchor: new google.maps.Point(10, 10),
+      scaledSize: new google.maps.Size(10, 17)
     }
-}
-
-
-//clears old markers
-function clearResults (markers){
-		for (var m in markers){
-			markers [m].setMap(null);
-		}
-		markers = [];
-}
-//this will select a new group of places if the user drags the map and clicks on a different center
-  google.maps.event.addListener(map, 'rightclick', function(event){
-  	map.setCenter(event.latlng); //resets the map
-  	clearResults(markers); //clears the old makers
-  	//new area is defined
-  	var request = {
-  		location: event.latlng,
-  		radius: 8047, 
-  		types: ['cafe'] // will need to update with the button results
-  	};
-  	service.nearbySearch(request, callback);
-  	console.log("request");
-
   });
 
-
-	};
-
-
-
+  google.maps.event.addListener(marker, 'click', function() {
+    service.getDetails(place, function(result, status) {
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        console.error(status);
+        return;
+      }
+      infoWindow.setContent(result.name);
+      infoWindow.open(map, marker);
+    });
+  });
+}
