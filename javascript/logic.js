@@ -1,75 +1,52 @@
-//Initializes the map with page load
-function initialize() {
+$(document).ready(function(){
 
-//defines the properties for the map
-	 var mapProp = {
-	 	//center is the (lat, long) that will be the center of the map
-  		center:new google.maps.LatLng(51.508742, -0.120850),
-		//specifies zoom levels for the map higher levels will be a higher resoution. 0 is a view of the earth
-  		zoom: 7, 
-  		//lets users drag the map
-  		draggable:true,
-  		//lets users scroll through the page with out moving the map
-  		disableDefaultUI:false,
-  		//specifies the type of map to display. Road map is normal, 2D. Could switch to 'Hybrid' and have photo with road and city names.
-  		mapTypeId: google.maps.MapTypeId.Hybrid
-  		
-		};
+	//weather underground api url
+	$.ajax({
+	  url : "http://api.wunderground.com/api/77cd5507fb26ca1c/hourly/q/autoip.json",
+	  dataType : "jsonp",
 
-//creates a new map inside the div element googleMap in html using the paramaters that are passed through mapProp
-var map1=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-		//center:{
-			//lat: 51.508742,
-			//lng: -0.120850
-		//},
-		//zoom:15
-	
+		success : function(data) {
 
-//creates a second map from the paramaters passed through mapProp
-var map2 =new google.maps.Map(document.getElementById("googleMap2"), mapProp);
-};//{
-		//center:{
-			//lat: 51.508742,
-			//lng: -0.120850
-		//},
-	//};
+			console.log(data);
+			//for loop for how many hours we want, 12 sounds good for this web app
+			for (var i = 0; i < 12; i++){
 
-//var marker = new google.maps.Marker({
- 	//position:( new google.maps.LatLng(51.508742, -0.120850),
+				//variable to grab each data we want
+				var time = data['hourly_forecast'][i]['FCTTIME']['civil'];
+			  	var condition = data['hourly_forecast'][i]['condition'];
+				var temp = data['hourly_forecast'][i]['temp']['english'];
+				var humidity = data['hourly_forecast'][i]['humidity'];
+				// var icon = parsed_json['hourly_forecast'][i]['icon'];
+				// var iconUrl = parsed_json['hourly_forecast'][i]['icon_url'];
 
- 		//map:map,
- 		//draggable:true
- //});
+				//making a div for each hour of weather data to push into html later
+				var weatherDiv = $('<div>');
 
-//This pulls from the google places library of possible destinations
-var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+				//Want to try to work to include the icons here or elsewhere at a later time
+				//here are paragraph tags to push into weatherDiv for each weather data parameter
+				var pTime = $('<p>').text(time);
+				var pCondition = $('<p>').text(condition);
+				var pTemp = $('<p>').text(temp + "F");
+				var pHumidity = $('<p>').text("Humidity: " + humidity + "%");
 
-//place change event on search box
-google.maps.event.addDomListener(searchBox, 'places_changed', function(){
+				//appending relevent weather data to weatherDiv div 
+				weatherDiv.append(pTime)
+				weatherDiv.append(pCondition)
+				weatherDiv.append(pTemp)
+				weatherDiv.append(pHumidity)
 
-	var places = searchBox.getPlaces();
-	console.log(searchBox.getPlaces());
+				//ADDING A CLASS!! TO NEW WEATHER DIVS!!
+				weatherDiv.addClass('jsWeatherDivs col-xs-6 col-sm-3 col-md-2')
+				//adding a class to the paragraph tags just in case need it later in css
+				pTime.addClass('jsWeatherPtags text-center')
+				pCondition.addClass('jsWeatherPtags text-center')
+				pTemp.addClass('jsWeatherPtags text-center')
+				pHumidity.addClass('jsWeatherPtags text-center')
 
-	//bound
-	var bounds = new google.maps.LatLngBounds();
-	var i, place;
+				//pushing to html weatherDataDiv div
+				$('#weatherDataDiv').append(weatherDiv)
 
-	for (i=0; place=places[i]; i++){
-		//console.log(place.geometry);
-
-		bounds.extend(place.geometry.location);
-		//maker.setPosition(place.geometry.location); //sets new marker position
-	}
-//map.fitBounds(bounds); //fit to the bound
-//map.setZoom(15);
+			}
+		}
+	});
 });
-
-//adds the marker to the center of the map 
-//NEED TO DEFINE CENTER STILL 
-//var marker=new google.maps.Marker({
-	//position:center,
-//});
-//marker.setMap(map);
-
-//adds a DOM listener that will execute the initialize function on window when the page is loaded
-google.maps.event.addDomListener(window, 'load', initialize);
