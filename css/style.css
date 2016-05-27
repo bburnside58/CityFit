@@ -1,3 +1,47 @@
+#title{
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	text-align: center;
+	color: white;
+	font-size: 55px;
+	letter-spacing: 7px;
+}
+
+#descript{
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	text-align: center;
+	color: white;
+}
+
+#formSearch{
+	text-align: center;
+	color: white;
+}
+
+#calcTitle{
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	text-align: center;
+	color: white;
+}
+
+#calcParagraph{
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	text-align: center;
+	color: white;
+}
+
+label{
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	color: white;
+	word-spacing: 1.5px;
+	font-size: 18px;
+}	
+
+#theCalculation{
+	font-size: 25px;
+}
+
+
+
 #map{
 	height: 400px;
 }
@@ -6,6 +50,7 @@
 	width: 100px;
 	float: right;
 	margin-right: 15px;
+	clear: both;
 }
 
 html { 
@@ -14,13 +59,22 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url(../images/bg.jpg);
 }
 
 .jsWeatherDivs{
 	margin-top: 25px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	font-size: 16px;
+	padding: 25px;
 }
 
 .jsWeatherPtags{
-	color: black;
-
+	color: white;
+	font-family: 'Georgia', Times, Times New Roman, serif;
 }
