@@ -11,7 +11,7 @@ window.initMap =function() {
   center = new google.maps.LatLng(-34.397, 150.644);
     map = new google.maps.Map(document.getElementById('map'), {
     center: center,//{lat: -34.397, lng: 150.644},
-    zoom: 14
+    zoom: 13
     });
 
 //NEW
@@ -25,6 +25,8 @@ window.initMap =function() {
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
+//NEWER
+var infowindow = new google.maps.InfoWindow();
 //NEW
 var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
@@ -32,7 +34,7 @@ var markers = [];
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
 
-          if (places.length == 0) {
+          if (places.length === 0) {
             return;
           }
 
@@ -58,8 +60,29 @@ var markers = [];
               icon: icon,
               title: place.name,
               position: place.geometry.location
-            }));
 
+            }));
+           
+            google.maps.event.addListener(markers, 'click', function() {
+              
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+            'Place ID: ' + place.place_id + '<br>' +
+              place.formatted_address);
+            infowindow.open(map, markers);
+  
+            service.getDetails(place, function(result, status) {
+
+              if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
+        }
+
+     infowindow.setContent(result.name);
+      infowindow.open(map, markers);
+    });
+  });
+
+            
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
@@ -69,7 +92,9 @@ var markers = [];
           });
           map.fitBounds(bounds);
         });
-      }
+      };
+
+
 
 
   // geolocation for where user is
@@ -84,11 +109,11 @@ var markers = [];
       //infoWindow.setContent('Location found.');
       map.setCenter(pos);
     }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
+      handleLocationError(true, infowindow, map.getCenter());
     });
   } else {
     // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+    handleLocationError(false, infowindow, map.getCenter());
   }
 
    
@@ -107,13 +132,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   //infoWindow = new google.maps.InfoWindow();
   //service = new google.maps.places.PlacesService(map);
 
-  // The idle event is a debounced event, so we can query & listen without
-  // throwing too many requests at the server.
-  //map.addListener('idle', performSearch);
+  
 
 
-
-
+//This isn't used but causes issues when deleted
 
 function addMarker(place) {
   var marker = new google.maps.Marker({
@@ -126,16 +148,7 @@ function addMarker(place) {
     }
   });
 
-  google.maps.event.addListener(marker, 'click', function() {
-    service.getDetails(place, function(result, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-      infoWindow.setContent(result.name);
-      infoWindow.open(map, marker);
-    });
-  });
+ 
 }
 
 
