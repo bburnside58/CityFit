@@ -49,6 +49,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+});
 
 	//creating function calsBurned, we are then using JQuery method 'find' to grab inputs from the html id's and pass them into the variables below
 	function calsBurned() {
@@ -78,4 +79,3 @@ $(document).ready(function(){
 
 	//runs the above function
 	calsBurned();
-});
