@@ -24,7 +24,6 @@
 
 		<form class="col-xs-12 col-sm-6" id="formSearch">
 			<input id="pac-input" class="controls" type="text" placeholder="Let's Walk!">
-			<!-- <input type="text" name="city" placeholder=""> -->
 			<input id="submit" type="submit" name="submitbutton">
 		</form>
 
@@ -63,7 +62,6 @@
  	</div>
 
 
-
 <!-- here is the div where I will attempt to push the hourly weather data -->
 <!-- Dynamic div creation class = .jsWeatherDivs use this in css ! -->
 <!-- Dynamic p tags creation class = .jsWeatherPtags use this in css ! -->
@@ -78,8 +76,6 @@
 
 </div>
 
-<!--Google Map with API Key--> <!--&libraries places adds the ability to search through lat and log by address-->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&libraries=places"></script>
 <!--Firebase-->
 <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script> 
 <!-- jQuery -->
@@ -87,8 +83,7 @@
 <!-- javascript -->
 <script type="text/javascript" src="javascript/logic.js"></script>
 <!-- Google map api -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&callback=initMap"></script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm9hbltaeKaJlGA2KEx7wt1JMebjHeIwU&callback=initMap&libraries=places"></script>
 
 </body>
 </html>
