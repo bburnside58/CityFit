@@ -91,7 +91,7 @@ var center;
 var pos;
 
 window.initMap =function() {
-  center = new google.maps.LatLng(28.7892, -81.2757);
+  center = new google.maps.LatLng(28.7441953, -81.30330070000002);
     map = new google.maps.Map(document.getElementById('map'), {
     center: center,//{lat: -34.397, lng: 150.644},
     zoom: 15
